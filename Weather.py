@@ -50,7 +50,7 @@ page = st.sidebar.selectbox("Go to", ["Home", "Predict", "Performance"])
 
 if page == "Home":
     st.title("🌦️ Weather Predictor")
-    st.write("This Streamlit-based web application predicts the weather type (e.g., Sunny, Rainy, Cloudy, Snowy) using input features like temperature, humidity, wind speed, and more. It supports multipage navigation, allowing users to seamlessly switch between the home screen, prediction interface, and an about section. Powered by machine learning, the app provides quick and interactive forecasts in a clean, user-friendly interface.")
+    st.write("This Streamlit-based web application predicts the weather type (e.g., Sunny, Rainy, Cloudy, Snowy) using input features like temperature, humidity, wind speed, and more. It supports multipage navigation, allowing users to seamlessly switch between the home screen, prediction interface, and an performance. Powered by machine learning, the app provides quick and interactive forecasts in a clean, user-friendly interface.")
     st.markdown('[The dataset used :],https://www.kaggle.com/datasets/nikhil7280/weather-type-classification')
 
 elif page == "Predict":
