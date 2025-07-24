@@ -11,10 +11,10 @@ df=pd.read_csv('weather_classification_data.csv')
 preprocessor = ColumnTransformer([('cat',OneHotEncoder(handle_unknown='ignore'),['Cloud Cover','Season','Location'])], remainder='passthrough')
 model = Pipeline([
     ('pre', preprocessor),
-    ('clf', RandomForestClassifier(n_estimators=100, random_state=42))
+    ('model', RandomForestClassifier(n_estimators=100, random_state=42))
 ])
 
-
+#Encoding
 label_cols=['Weather Type','Season','Location','Cloud Cover']
 encoders= {}
 
@@ -29,7 +29,7 @@ for col in label_cols:
 
 
 
-
+#Training
 y=df['Weather Type']
 X = df.drop(['Weather Type'],axis = 1)
 
@@ -38,7 +38,7 @@ model.fit(X,y)
 
 
 
-
+#Streamlit app implementation
 
 
 import streamlit as st
@@ -46,7 +46,7 @@ import streamlit as st
 st.title("🌤️ Weather Type Predictor")
 
 
-# Input widgets
+#Parameters 
 temp = st.slider("Temperature (°C)", -20, 50, 25)
 humidity = st.slider("Humidity (%)", 0, 100, 50)
 wind_speed = st.slider("Wind Speed", 0.0, 30.0, 5.0)
@@ -58,7 +58,7 @@ season = st.selectbox("Season", encoders['Season'].classes_)
 visibility = st.slider("Visibility (km)", 0.0, 20.0, 5.0)
 location = st.selectbox("Location", encoders['Location'].classes_)
 
-# Encode inputs
+# Encodung Inputs
 input_data = pd.DataFrame({
     'Temperature': [temp],
     'Humidity': [humidity],
@@ -72,10 +72,10 @@ input_data = pd.DataFrame({
     'Location': [encoders['Location'].transform([location])[0]],
 })
 
-# Predict
+# Output 
 if st.button("Predict Weather Type"):
     pred = model.predict(input_data)[0]
     result = encoders['Weather Type'].inverse_transform([pred])[0]
-    st.success(f"🌈 Predicted Weather Type: **{result}**")
+    st.success(f" Predicted Weather Type: **{result}**")
 
 
