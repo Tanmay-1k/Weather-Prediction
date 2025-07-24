@@ -1,6 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder,LabelEncoder
 from sklearn.compose import ColumnTransformer
